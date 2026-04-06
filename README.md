@@ -23,7 +23,7 @@ Raw FMI weather observations should be downloaded via your `load_data.py` into a
 ## Execution
 
 1. Make sure PyTorch and dependencies are installed (`pip install torch pandas numpy scikit-learn matplotlib pyyaml`).
-2. Populate data using your preexisting `load_data.py`.
+2. Populate data using `load_data.py`.
 3. Run `python run_experiments.py` to train Systems A, B, and C computationally.
 4. Run `python analyze_results.py` to compare their relative AUC on predicting storms/extreme environments.
 
