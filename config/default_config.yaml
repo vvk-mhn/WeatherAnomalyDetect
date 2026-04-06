@@ -1,0 +1,28 @@
+run:
+  seed: 42
+  data_dir: "./fmi_data"
+  results_dir: "./results"
+
+data:
+  window_size: 24         # using 24 hours of data to form a feature vector
+  batch_size: 32          # local batch size
+  features: ["Air temperature", "Relative humidity", "Wind speed", "Precipitation amount"]
+  test_split: 0.2
+  val_split: 0.1
+  # Rule-based threshold for anomaly generation (evaluation only)
+  anomaly_thresh:
+    wind_speed: 15.0      # max wind speed > 15 m/s in a window is a storm
+    temp_drop: 10.0       # drop of 10 degrees within a window is a frost/extreme drop
+
+graph:
+  type: "correlation"     # correlation based on temperature
+  k_neighbors: 3          # k-nearest neighbors
+  alpha: 0.5              # Default GTVMin coupling strength
+
+model:
+  type: "small"           # "small" or "large" autoencoder (differing structural choices)
+  latent_dim: 16
+
+training:
+  epochs: 30
+  lr: 0.001
